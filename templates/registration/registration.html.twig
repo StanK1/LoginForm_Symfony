@@ -2,13 +2,14 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
     </head>
     <body>
         <div class="login-wrap">
             <div class="login-html">
-                <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab">Sign In</label>
-                <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign Up</label>
+                <input id="tab-1" type="radio" name="tab" class="sign-in">
+                <label for="tab-1" class="tab">Sign In</label>
+                <input id="tab-2" type="radio" name="tab" class="sign-up" checked>
+                <label for="tab-2" class="tab">Sign Up</label>
                 <div class="login-form">
                     <!-- Existing Sign In HTML -->
                     <div class="sign-in-htm">
@@ -27,12 +28,12 @@
                                 {{ form_widget(registrationForm.email, {'attr': {'class': 'input'}}) }}
                             </div>
                             <div class="group">
-                                {{ form_label(registrationForm.password.first, 'Password') }}
-                                {{ form_widget(registrationForm.password.first, {'attr': {'class': 'input'}}) }}
+                                {{ form_label(registrationForm.plainPassword.first, 'Password') }}
+                                {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class': 'input'}}) }}
                             </div>
                             <div class="group">
-                                {{ form_label(registrationForm.password.second, 'Repeat Password') }}
-                                {{ form_widget(registrationForm.password.second, {'attr': {'class': 'input'}}) }}
+                                {{ form_label(registrationForm.plainPassword.second, 'Repeat Password') }}
+                                {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class': 'input'}}) }}
                             </div>
                             <div class="group">
                                 {{ form_widget(registrationForm.register, {'attr': {'class': 'button'}}) }}
