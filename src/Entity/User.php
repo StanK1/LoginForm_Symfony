@@ -19,7 +19,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
-    // Adding the email property
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
@@ -102,4 +101,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->plainPassword = null;
     }
+
 }
