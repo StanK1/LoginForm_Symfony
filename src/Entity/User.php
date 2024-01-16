@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\Entity;
 
+use Symfony\Component\Uid\Uuid;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -13,7 +15,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
@@ -22,20 +24,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'json')]
     private array $roles = [];
 
     #[ORM\Column]
     private ?string $password = null;
 
+
+
     private ?string $plainPassword = null;
 
+    #[ORM\Column(type: 'uuid', unique: true)]
+    private ?Uuid $uuid = null;
+
+    public function __construct()
+    {
+        $this->uuid = Uuid::v4();
+    }
+    
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsername(): string
     {
         return $this->username;
     }
@@ -94,6 +106,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+        return $this;
+    }
+
+    public function getUuid(): Uuid
+    {
+        return $this->uuid;
+    }
+
+    public function setUuid(Uuid $uuid): self
+    {
+        $this->uuid = $uuid;
+
         return $this;
     }
 
